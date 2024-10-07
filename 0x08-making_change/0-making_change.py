@@ -14,14 +14,11 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize the dp array to store the minimum number of coins for each amount.
     dp = [float('inf')] * (total + 1)
-    dp[0] = 0  # It takes 0 coins to make a total of 0.
+    dp[0] = 0.
 
-    # Loop through each coin and each amount to update the dp array.
     for coin in coins:
         for amount in range(coin, total + 1):
             dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
-    # If dp[total] is still infinity, it means we couldn't form the amount.
     return dp[total] if dp[total] != float('inf') else -1
